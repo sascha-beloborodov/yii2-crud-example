@@ -18,11 +18,12 @@ use yii\db\Expression;
  * @property string $updated_at
  *
  * @property User $user
- * @property UsersSitesServices[] $usersSitesServices
+ * @property UsersSitesServices $usersSitesServices
  * @property Service[] $services
  */
 class UsersSites extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -95,12 +96,23 @@ class UsersSites extends \yii\db\ActiveRecord
             ->viaTable('users_sites_services', ['users_sites_id' => 'id']);
     }
 
-    public static function getList(int $limit, int $page) : array
+    public function getUsersSitesServices()
+    {
+        return $this->hasOne(UsersSitesServices::className(), ['users_sites_id' => 'id']);
+    }
+
+    public static function getCount() : int
+    {
+        return self::find()->count();
+    }
+
+    public static function getList(int $limit, int $offset) : array
     {
         $result = self::find()
             ->with('user')
             ->with('services')
-            ->limit(10)
+            ->limit($limit)
+            ->offset($offset)
             ->orderBy('id')
             ->all();
 

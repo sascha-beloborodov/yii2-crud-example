@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2256f9fd676b034ece790df244c31b33",
-    "content-hash": "5543d72d6b41504971f88a2426fda2af",
+    "hash": "4e50849f78bf411b234824feb5d5dd17",
+    "content-hash": "8e1d2cff9937c8c421a338656206a193",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -256,64 +256,6 @@
             "time": "2016-09-14 20:40:20"
         },
         {
-            "name": "dektrium/yii2-user",
-            "version": "0.9.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dektrium/yii2-user.git",
-                "reference": "d9530a1b4213c2bd7fd8eb05d185dfe9dffde558"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/d9530a1b4213c2bd7fd8eb05d185dfe9dffde558",
-                "reference": "d9530a1b4213c2bd7fd8eb05d185dfe9dffde558",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "^2.0.0",
-                "yiisoft/yii2-authclient": "^2.1.0",
-                "yiisoft/yii2-bootstrap": "^2.0.0",
-                "yiisoft/yii2-swiftmailer": "^2.0.0"
-            },
-            "require-dev": {
-                "codeception/specify": "^0.4.3",
-                "codeception/verify": "^0.3.1",
-                "yiisoft/yii2-codeception": "^2.0.0"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "bootstrap": "dektrium\\user\\Bootstrap",
-                "branch-alias": {
-                    "dev-master": "0.9.x-dev",
-                    "dev-develop": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "dektrium\\user\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dmitry Erofeev",
-                    "email": "dmeroff@gmail.com",
-                    "homepage": "http://dmeroff.ru"
-                }
-            ],
-            "description": "Flexible user registration and authentication module for Yii2",
-            "keywords": [
-                "User management",
-                "dektrium",
-                "yii2",
-                "yii2-user"
-            ],
-            "time": "2016-08-13 15:45:38"
-        },
-        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.8.0",
             "source": {
@@ -356,6 +298,54 @@
                 "html"
             ],
             "time": "2016-07-16 12:58:58"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3|^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": []
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2016-04-29 12:21:54"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -505,54 +495,6 @@
             "time": "2016-10-20 12:02:50"
         },
         {
-            "name": "yiisoft/yii2-authclient",
-            "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-authclient.git",
-                "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/5ed7ebfda270d87197f7640b2a9c046297080cac",
-                "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2-httpclient": "~2.0.1"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "yii\\authclient\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Paul Klimov",
-                    "email": "klimov.paul@gmail.com"
-                }
-            ],
-            "description": "External authentication via OAuth and OpenID for the Yii framework",
-            "keywords": [
-                "OpenId",
-                "api",
-                "auth",
-                "oauth",
-                "yii2"
-            ],
-            "time": "2016-08-29 09:21:09"
-        },
-        {
             "name": "yiisoft/yii2-bootstrap",
             "version": "2.0.6",
             "source": {
@@ -648,53 +590,6 @@
                 "yii2"
             ],
             "time": "2016-02-06 00:49:24"
-        },
-        {
-            "name": "yiisoft/yii2-httpclient",
-            "version": "2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-httpclient.git",
-                "reference": "2cc58c318da3c7c71bda1cc26bd3ec5a3ac26284"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/2cc58c318da3c7c71bda1cc26bd3ec5a3ac26284",
-                "reference": "2cc58c318da3c7c71bda1cc26bd3ec5a3ac26284",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "~2.0.0"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "yii\\httpclient\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Paul Klimov",
-                    "email": "klimov.paul@gmail.com"
-                }
-            ],
-            "description": "HTTP client extension for the Yii framework",
-            "keywords": [
-                "curl",
-                "http",
-                "httpclient",
-                "yii2"
-            ],
-            "time": "2016-10-31 11:29:06"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -997,6 +892,64 @@
             "time": "2016-08-29 22:49:25"
         },
         {
+            "name": "dektrium/yii2-user",
+            "version": "0.9.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dektrium/yii2-user.git",
+                "reference": "d9530a1b4213c2bd7fd8eb05d185dfe9dffde558"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/d9530a1b4213c2bd7fd8eb05d185dfe9dffde558",
+                "reference": "d9530a1b4213c2bd7fd8eb05d185dfe9dffde558",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "^2.0.0",
+                "yiisoft/yii2-authclient": "^2.1.0",
+                "yiisoft/yii2-bootstrap": "^2.0.0",
+                "yiisoft/yii2-swiftmailer": "^2.0.0"
+            },
+            "require-dev": {
+                "codeception/specify": "^0.4.3",
+                "codeception/verify": "^0.3.1",
+                "yiisoft/yii2-codeception": "^2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "dektrium\\user\\Bootstrap",
+                "branch-alias": {
+                    "dev-master": "0.9.x-dev",
+                    "dev-develop": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dektrium\\user\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Erofeev",
+                    "email": "dmeroff@gmail.com",
+                    "homepage": "http://dmeroff.ru"
+                }
+            ],
+            "description": "Flexible user registration and authentication module for Yii2",
+            "keywords": [
+                "User management",
+                "dektrium",
+                "yii2",
+                "yii2-user"
+            ],
+            "time": "2016-08-13 15:45:38"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
             "source": {
@@ -1049,54 +1002,6 @@
                 "instantiate"
             ],
             "time": "2015-06-14 21:17:01"
-        },
-        {
-            "name": "fzaninotto/faker",
-            "version": "v1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3|^7.0"
-            },
-            "require-dev": {
-                "ext-intl": "*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": []
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2016-04-29 12:21:54"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -2991,6 +2896,54 @@
             "time": "2016-08-09 15:02:57"
         },
         {
+            "name": "yiisoft/yii2-authclient",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-authclient.git",
+                "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/5ed7ebfda270d87197f7640b2a9c046297080cac",
+                "reference": "5ed7ebfda270d87197f7640b2a9c046297080cac",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2-httpclient": "~2.0.1"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\authclient\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "External authentication via OAuth and OpenID for the Yii framework",
+            "keywords": [
+                "OpenId",
+                "api",
+                "auth",
+                "oauth",
+                "yii2"
+            ],
+            "time": "2016-08-29 09:21:09"
+        },
+        {
             "name": "yiisoft/yii2-debug",
             "version": "2.0.6",
             "source": {
@@ -3136,6 +3089,53 @@
                 "yii2"
             ],
             "time": "2016-03-18 14:09:46"
+        },
+        {
+            "name": "yiisoft/yii2-httpclient",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-httpclient.git",
+                "reference": "2cc58c318da3c7c71bda1cc26bd3ec5a3ac26284"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/2cc58c318da3c7c71bda1cc26bd3ec5a3ac26284",
+                "reference": "2cc58c318da3c7c71bda1cc26bd3ec5a3ac26284",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\httpclient\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "HTTP client extension for the Yii framework",
+            "keywords": [
+                "curl",
+                "http",
+                "httpclient",
+                "yii2"
+            ],
+            "time": "2016-10-31 11:29:06"
         }
     ],
     "aliases": [],

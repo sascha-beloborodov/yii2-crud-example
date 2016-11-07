@@ -3,6 +3,7 @@
 namespace app\controllers\admin;
 
 use app\common\controllers\auth\AdminAuth;
+use app\models\UserSiteForm;
 use app\models\UsersSites;
 use Yii;
 use app\models\Service;
@@ -18,6 +19,7 @@ use yii\web\Response;
 class ServicesController extends AdminAuth
 {
 
+    const LIMIT = 20;
     /**
      * Lists all Service models.
      * @return mixed
@@ -103,17 +105,59 @@ class ServicesController extends AdminAuth
     public function actionGetUsers()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
+        $rq = Yii::$app->request;
+        $page = (int) $rq->get('page');
+
+        if (1 >= $page) {
+            $page = 0;
+        } else {
+            --$page;
+        }
+
+        $totalRecords = UsersSites::getCount();
+        if ($totalRecords % self::LIMIT != 0) {
+            $totalPages = round($totalRecords/self::LIMIT) + 1;
+        } else {
+            $totalPages = round($totalRecords/self::LIMIT);
+        }
+
         return [
-            'data' => UsersSites::getList(10, 1),
+            'data' => UsersSites::getList(self::LIMIT, $page * self::LIMIT),
             'pagination' => [
-                'total' => 0,
-                'per_page' => 2,
-                'from' => 1,
-                'to' => 0,
-                'current_page' => 1
+                'total' => $totalRecords,
+                'per_page' => self::LIMIT,
+                'from' => $page * self::LIMIT + 1,
+                'to' => $page * self::LIMIT + self::LIMIT,
+                'last_page' => $totalPages,
+                'current_page' => !$page ? 1 : $page + 1
             ]
         ];
     }
+
+    public function actionEditData()
+    {
+        $rq = Yii::$app->request;
+        $id = $rq->get('id');
+        if (!$rq->isAjax || !(int) $id) {
+            return '';
+        }
+        $model = new UserSiteForm();
+        $model->is_active = 1;
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if ($model->load($rq->post()) && $model->validate()) {
+            if ($model->update($id)) {
+                return '1';
+            }
+        }
+        Yii::$app->response->statusCode = 403;
+        return $model->errors;
+    }
+
+    public function actionRemoveData()
+    {
+
+    }
+
 
     /**
      * Finds the Service model based on its primary key value.

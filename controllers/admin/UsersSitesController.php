@@ -111,13 +111,13 @@ class UsersSitesController extends AdminAuth
             return '';
         }
         $query = $rq->get('query');
-        return User::find()
-            ->where(['<>', 'role', User::ADMIN_ROLE])
+        $result = User::find()
             ->orWhere(['like', 'username', $query])
             ->orWhere(['like', 'first_name', $query])
             ->orWhere(['like', 'last_name', $query])
             ->orWhere(['like', 'email', $query])
             ->all();
+        return $result;
     }
 
     public function actionGetServices()

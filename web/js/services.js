@@ -1,21 +1,39 @@
+// $.ajaxSetup({
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     }
+// });
+
+Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
+
 new Vue({
 
     el: '#manage-vue',
 
     data: {
         items: [],
+        users: [],
+        services: [],
         pagination: {
             total: 0,
             per_page: 2,
             from: 1,
+            from: 1,
             to: 0,
             current_page: 1
         },
-        offset: 4,
-        formErrors:{},
-        formErrorsUpdate:{},
-        newItem : {'title':'','description':''},
-        fillItem : {'title':'','description':'','id':''}
+        offset: 20,
+        formErrors: {},
+        formErrorsUpdate: {},
+        fillItem : {
+            'ip_address': '',
+            'domain': '',
+            'id': '',
+            'service_id': '',
+            'service': '',
+            'user_id': '',
+            'username': ''
+        }
     },
 
     computed: {
@@ -43,59 +61,96 @@ new Vue({
         }
     },
 
-    ready : function(){
+    ready : function() {
         this.getVueItems(this.pagination.current_page);
     },
 
     methods : {
 
-        getVueItems: function(page){
+        getVueItems: function(page) {
             var that = this;
             this.$http.get('/admin/services/get-users/?page='+page).then(function(response) {
                 this.$set('items', response.data.data);
                 this.$set('pagination', response.data.pagination);
-                console.log(that.data);
-            });
-        },
-
-        createItem: function() {
-            var input = this.newItem;
-            var that = this;
-            this.$http.post('/vueitems',input).then(function (response) {
-                that.changePage(that.pagination.current_page);
-                that.newItem = {'title':'','description':''};
-                $("#create-item").modal('hide');
-                toastr.success('Item Created Successfully.', 'Success Alert', {timeOut: 5000});
-            }, function (response) {
-                that.formErrors = response.data;
             });
         },
 
         deleteItem: function(item) {
             var that = this;
-            this.$http.delete('/vueitems/'+item.id).then(function (response) {
+            this.$http.delete('/admin/services/remove-data/?id='+ item.id).then(function (response) {
                 that.changePage(that.pagination.current_page);
                 toastr.success('Item Deleted Successfully.', 'Success Alert', {timeOut: 5000});
             });
         },
 
-        editItem: function(item) {
-            this.fillItem.title = item.title;
+        editItem: function(item, user) {
+            this.fillItem.ip_address = item.ip_address;
             this.fillItem.id = item.id;
-            this.fillItem.description = item.description;
+            this.fillItem.domain = item.domain;
+            this.fillItem.user_id = user.id;
+            this.fillItem.username = user.username;
+            this.fillItem.service_id = item.services[0].id;
+            this.fillItem.service = item.services[0].type;
             $("#edit-item").modal('show');
         },
 
-        updateItem: function(id) {
-            var input = this.fillItem;
+
+        runUserAutocomplete: function() {
+            if (3 > this.fillItem.username.length) {
+                return;
+            }
             var that = this;
-            this.$http.put('/vueitems/'+id,input).then(function (response) {
+            this.$http.get('/admin/users-sites/get-users/?query=' + that.fillItem.username).then(function(response) {
+                this.$set('users', response.data);
+            });
+        },
+
+        runServiceAutocomplete: function() {
+            if (3 > this.fillItem.service.length) {
+                return;
+            }
+            var that = this;
+            this.$http.get('/admin/users-sites/get-services/?query=' + that.fillItem.service).then(function(response) {
+                this.$set('services', response.data);
+            });
+        },
+
+        selectUser: function (user) {
+            this.$set('users', []);
+            this.fillItem.user_id = user.id;
+            this.fillItem.username = user.username;
+        },
+
+        selectService: function(service) {
+            this.$set('services', []);
+            this.fillItem.service_id = service.id;
+            this.fillItem.service = service.type;
+        },
+
+        updateItem: function(id) {
+            var input = { 'UserSiteForm' : this.fillItem };
+            var formData = new FormData();
+            for (var prop in this.fillItem) {
+                // formattedInput['UserSiteForm[' + prop +']'] = this.fillItem[prop];
+                formData.append('UserSiteForm[' + prop +']', this.fillItem[prop]);
+            }
+            var that = this;
+            this.$http.post('/admin/services/edit-data/?id=' + id, formData).then(function (response) {
                 that.changePage(this.pagination.current_page);
-                that.fillItem = { 'title': '', 'description':'', 'id':'' };
+                that.fillItem = {
+                    'ip_address': '',
+                    'domain': '',
+                    'id': '',
+                    'service_id': '',
+                    'service': '',
+                    'user_id': '',
+                    'username': ''
+                };
                 $("#edit-item").modal('hide');
                 toastr.success('Item Updated Successfully.', 'Success Alert', {timeOut: 5000});
             }, function (response) {
                 that.formErrorsUpdate = response.data;
+                toastr.danger('Item Updated Successfully.', 'Danger Alert', {timeOut: 5000});
             });
         },
 
