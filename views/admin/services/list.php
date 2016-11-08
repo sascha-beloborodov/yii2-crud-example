@@ -31,7 +31,10 @@
 
     <div class="div-table">
         <div class="div-row">
-            <div class="div-cell">User</div>
+            <div class="div-cell">
+                User <br>
+                <input type="text" class="form-control" v-model="userSearch">
+            </div>
             <div class="div-cell">Type</div>
             <div class="div-cell">IP</div>
             <div class="div-cell">Domain</div>
