@@ -33,7 +33,7 @@
         <div class="div-row">
             <div class="div-cell">
                 User <br>
-                <input type="text" class="form-control" v-model="userSearch">
+                <input type="text" class="form-control" v-model="userSearch" v-on:keyup="typeSearchUser">
             </div>
             <div class="div-cell">Type</div>
             <div class="div-cell">IP</div>

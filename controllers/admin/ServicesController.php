@@ -107,6 +107,7 @@ class ServicesController extends AdminAuth
         Yii::$app->response->format = Response::FORMAT_JSON;
         $rq = Yii::$app->request;
         $page = (int) $rq->get('page');
+        $query = $rq->get('query');
 
         if (1 >= $page) {
             $page = 0;
@@ -114,7 +115,7 @@ class ServicesController extends AdminAuth
             --$page;
         }
 
-        $totalRecords = UsersSites::getCount();
+        $totalRecords = UsersSites::getCount($query);
         if ($totalRecords % self::LIMIT != 0) {
             $totalPages = round($totalRecords/self::LIMIT) + 1;
         } else {
@@ -122,7 +123,7 @@ class ServicesController extends AdminAuth
         }
 
         return [
-            'data' => UsersSites::getList(self::LIMIT, $page * self::LIMIT),
+            'data' => UsersSites::getList(self::LIMIT, $page * self::LIMIT, $query),
             'pagination' => [
                 'total' => $totalRecords,
                 'per_page' => self::LIMIT,

@@ -4,7 +4,9 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii\db\Query;
 
 /**
  * This is the model class for table "users_sites".
@@ -101,24 +103,39 @@ class UsersSites extends \yii\db\ActiveRecord
         return $this->hasOne(UsersSitesServices::className(), ['users_sites_id' => 'id']);
     }
 
-    public static function getCount() : int
+    public static function getCount($queryUserString = null) : int
     {
+        if ($queryUserString) {
+            return self::find()->where(['like', 'username', $queryUserString])->count();
+        }
         return self::find()->count();
     }
 
-    public static function getList(int $limit, int $offset) : array
+    public static function getList(int $limit, int $offset, $query = null) : array
     {
-        $result = self::find()
+        /** @var Query $acQuery */
+        $acQuery = self::find()
             ->with('user')
             ->with('services')
             ->limit($limit)
             ->offset($offset)
-            ->orderBy('id')
-            ->all();
+            ->orderBy('id');
+
+        if (!$query) {
+            $acQuery->where(['like', 'username', $query]);
+        }
+
+        $result = $acQuery->all();
 
         return self::getPreparedList($result);
     }
 
+    /**
+     * prepare result array for resp
+     *
+     * @param array $list
+     * @return array
+     */
     private static function getPreparedList(array $list) : array
     {
         $result = [];

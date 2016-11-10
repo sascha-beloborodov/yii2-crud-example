@@ -1,9 +1,3 @@
-// $.ajaxSetup({
-//     headers: {
-//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//     }
-// });
-
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
 
 new Vue({
@@ -157,6 +151,16 @@ new Vue({
         changePage: function (page) {
             this.pagination.current_page = page;
             this.getVueItems(page);
+        },
+
+        typeSearchUser: function(page) {
+            if (3 > this.userSearch) {
+                return '';
+            }
+            this.$http.get('/admin/services/get-users/?page=1&query=' + this.userSearch).then(function(response) {
+                this.$set('items', response.data.data);
+                this.$set('pagination', response.data.pagination);
+            });
         }
     }
 
